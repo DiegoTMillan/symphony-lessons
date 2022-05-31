@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TwigController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ nombre }}! ✅</h1>
+    <h2>Calle {{direccion.calle}}, número {{direccion.numero}}, código postal: {{direccion.codigoPostal}}</h2>
+    <h3>Resultado de sumar 2+2: {{2+2}}</h3>
+
+    {% set valor1 = 2 %}
+    {% set valor2 = 5 %}
+
+    {% set suma= valor1 + valor2 %}
+
+    <h3>Resultado de sumar valor1 + valor2 + direccion.planta: {{suma + direccion.planta}}</h3>
+
+
+    {#con el siguiente ejemplo y variable
+    predefinidas como request y query tenemos
+    esto http://localhost/symfony/prueba1/public/index.php/twig/index?p2=eee #}
+    <p>{{ app.request.query.get("p2") }}</p>
+
+    {#otro ejemplito para for e if
+     http://localhost/symfony/prueba1/public/index.php/twig/index?p2=eee&p3=0&p4=hola #}
+
+    <ul>
+    {% for key, param in app.request.query %}
+        <li>
+        {{key}}: <b>{{param}}</b>
+        {% if key =='p3' %}
+        <h5>condición añadida con if</h5>
+        {% endif %}
+    {% endfor %}
+        </li>
+    </ul>
+
+
+    He aquí información importante:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/var/www/html/symfony/prueba1/src/Controller/TwigController.php'|file_link(0) }}">src/Controller/TwigController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/var/www/html/symfony/prueba1/templates/twig/index.html.twig'|file_link(0) }}">templates/twig/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}
