@@ -1,7 +1,47 @@
 {% extends 'twig/base_backoffice.html.twig' %}
 
-{% block titleHead %} BackOffice {% endblock %}
+{% block titleHead %}BACKOFFICE
+{% endblock %}
 
-{% block menu %}
-{% include menu %}
+{% block company %}Atlético Madrid S.A.D{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Posicion</th>
+                <th>Dorsal</th>
+                <th>País</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Koke</td>
+                <td>Resurreción</td>
+                <td>centrocampista</td>
+                <td>6</td>
+                <td>España</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Matheus</td>
+                <td>Cunha</td>
+                <td>delantero</td>
+                <td>19</td>
+                <td>Brasil</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Jan</td>
+                <td>Oblak</td>
+                <td>portero</td>
+                <td>13</td>
+                <td>Eslovenia</td>
+            </tr>
+        </tbody>
+    </table>
 {% endblock %}

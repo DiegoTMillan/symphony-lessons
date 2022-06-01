@@ -1,7 +1,28 @@
-{% extends 'twig/base_blog.html.twig' %}
+{% extends 'twig/base_backoffice.html.twig' %}
 
-{% block titleHead %} Blog {% endblock %}
+{% block titleHead %}BLOG{% endblock %}
 
-{% block menu2 %}
-{% include menu2 %}
+
+{% block content %}
+{{ fechaActual | date('d/m/Y H:i:s')}}
+{# ojo que la hora es la del servidor #}
+<br>
+{{'Hola, mundo' | trans}}
+{# sirve para traducir el contenido #}
+<br>
+{{random()}}
+{# ejemplo de función donde se coloca un número aleatorio #}
+<hr>
+{{dump(usuario)}}
+{# sirve para pintar una serie de contenidos tipo arrays u objetos y se pueden desplegar #}
+{{date() | date('d/m/Y H:i:s')}}
+{# comboWombo de date, para crear fecha actual en un objeto y luego date para filtralo con su aspecto #}
+{# a diferencia del anterior en este caso la fecha viene dada por la función y no por la variable #}
+<hr>
+{# <a href="http://localhost/symfony/prueba1/public/index.php/twig/backoffice#">Ir a BackOffice</a> #}
+{# el problema es que si hay cambios de servidor, o de estructura de directorios se va al carajo #}
+<a href="{{path('backoffice')}}">Ir a BackOffice</a>
+<hr>
+{# con esta solucion y nombrando el controlador siempre pintará la ruta correcta pese a los cambios #}
+{{dump(formulario)}}
 {% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'twig/base_backoffice.html.twig' %}
+
+{% block titleHead %}FORMULARIO
+{% endblock %}
+
+{% block company %}La Red Social
+{% endblock %}
+
+
+{% block content %}
+    <form action="{{path('app_form_prueba1')}}" method="POST">
+        <div class="row">
+            <div
+                class="col-6">
+                {# recuerda que ese nombre en el path es el que por defecto da symfony a cada metodo de la funcion #}
+                {{ form_row(form.nombre)}}
+            </div>
+            <div class="col-6">
+                {{ form_row(form.apellidos)}}
+            </div>
+            {{ form_rest(form)}}
+            {# con form_widget() se pinta todo incluyendo el token de seguridad. Con row no, y hay
+                    que incluir el form_rest #}
+            <hr>
+            <button class="btn btn-dark col-1" type="submit">Enviar</button>
+        </form>
+
+        {{dump(resultado)}}
+    {% endblock %}
