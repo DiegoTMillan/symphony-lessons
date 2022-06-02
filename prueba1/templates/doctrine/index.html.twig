@@ -1,0 +1,29 @@
+{% extends 'twig/base_backoffice.html.twig' %}
+
+
+{% block titleHead %}Categorías
+{% endblock %}
+
+{% block company %}Atlético Madrid S.A.D
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Entrada</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <td>{{ categoria.id }}</td>
+                    <td>{{ categoria.nombre }}</td>
+                    <td>{{ categoria.espacio }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -9,10 +9,10 @@
 
 {% block content %}
     <form action="{{path('app_form_prueba1')}}" method="POST">
+                {# recuerda que ese nombre en el path es el que por defecto da symfony a cada metodo de la funcion #}
         <div class="row">
             <div
                 class="col-6">
-                {# recuerda que ese nombre en el path es el que por defecto da symfony a cada metodo de la funcion #}
                 {{ form_row(form.nombre)}}
             </div>
             <div class="col-6">
@@ -20,7 +20,7 @@
             </div>
             {{ form_rest(form)}}
             {# con form_widget() se pinta todo incluyendo el token de seguridad. Con row no, y hay
-                    que incluir el form_rest #}
+                    que incluir el form_rest para el tema de la seguridad #}
             <hr>
             <button class="btn btn-dark col-1" type="submit">Enviar</button>
         </form>
