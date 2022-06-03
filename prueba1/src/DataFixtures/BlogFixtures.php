@@ -39,11 +39,11 @@ class BlogFixtures extends Fixture
                     $entrada->setResumen('Resumen');
                     $entrada->setCategoria($categoria);
                     $entrada->setUsuario($usuario);
-                    $manager->persist($entrada);
+                    $manager->persist($entrada);//esta función hace que los elementos 'persistan'
                 }
             }
         }
 
-        $manager->flush();
+        $manager->flush();//este es el método que guarda toda la pila de modificaciones
     }
 }

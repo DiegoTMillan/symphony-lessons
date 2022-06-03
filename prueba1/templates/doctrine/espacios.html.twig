@@ -1,0 +1,27 @@
+{% extends 'twig/base_backoffice.html.twig' %}
+
+
+{% block titleHead %}{{titulo}}
+{% endblock %}
+
+{% block company %}Atlético Madrid S.A.D
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for espacio in espacios %}
+                <tr>
+                    <td>{{ espacio.id }}</td>
+                    <td><a href="{{path('app_doctrine_prueba2', {id: espacio.id})}}">{{ espacio.nombre }}</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

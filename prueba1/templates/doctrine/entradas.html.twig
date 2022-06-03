@@ -1,0 +1,30 @@
+{% extends 'twig/base_backoffice.html.twig' %}
+
+
+{% block titleHead %}{{titulo}}
+{% endblock %}
+
+{% block company %}Atlético Madrid S.A.D
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Título</th>
+                <th>Resumen</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for entrada in entradas %}
+                <tr>
+                    <td>{{ entrada.id }}</td>
+                    <td>{{ entrada.titulo }}</td>
+                    <td>{{ entrada.resumen }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

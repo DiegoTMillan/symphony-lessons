@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Entrada;
+use App\Entity\Espacio;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,37 @@ class EntradaRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByEspacio(Espacio $espacio)
+    {
+        $dql = 'SELECT e FROM App\Entity\Entrada e JOIN e.categoria c WHERE c.espacio = :espacio';
+        $query = $this -> getEntityManager()->createQuery($dql);
+        $query->setParameter('espacio', $espacio);
+        return $query -> getResult();//ya tenemos el query a partir de la consulta dql
+    }
+
+    public function findByFilter($params)
+    {
+        $qb = $this -> createQueryBuilder('e');
+
+        if (isset($params['categoria'])) {
+            $qb->andWhere('e.categoria = categoria');
+            $qb->setParameter('categoria', $params['categoria']);
+        }
+        if (isset($params['usuario'])) {
+            $qb->andWhere('e.usuario = usuario');
+            $qb->setParameter('usuario', $params['usuario']);
+        }
+        if (isset($params['espacio'])) {
+            $qb->join('e.categoria', 'c');
+            $qb->andWhere('c.espacio = :espacio');
+            $qb->setParameter('espacio', $params['espacio']);
+        }
+        
+        
+        
+        return $qb->getQuery()->getResult();
     }
 
 //    /**

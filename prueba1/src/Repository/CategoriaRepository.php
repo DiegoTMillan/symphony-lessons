@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Categoria;
+use App\Entity\Espacio;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -37,6 +38,24 @@ class CategoriaRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findByEspacio(Espacio $espacio)//utilizar los repositorios para la consulta
+    {
+        $dql = 'SELECT c FROM App\Entity\Categoria c JOIN c.espacio e WHERE c.espacio = :espacioParam';//los dos puntos es un parámetro
+        $query = $this -> getEntityManager()->createQuery($dql);
+        $query->setParameter('espacioParam', $espacio);
+        return $query -> getResult();//ya tenemos el query a partir de la consulta dql
+    }
+
+    public function findByEspacioQueryBuilder(Espacio $espacio)//es lo mismo que con dql pero con el createquerybuilder
+    {
+        $qb = $this -> createQueryBuilder('c')
+            ->join('c.espacio', 'e')
+            -> where('c.espacio = : espacioParam')
+            ->setParameter('espacioParam', $espacio)
+    ;
+        return $qb -> getQuery()->getResult();//solo con esto escrito y la variable arriba es como un findAll
     }
 
 //    /**

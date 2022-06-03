@@ -34,7 +34,7 @@ class Espacio
         $this->categorias = new ArrayCollection();
     }
 
-    public function __toString()
+    public function __toString()//le dice al objeto como debe convertirse en una cadena de texto
     {
         return $this->nombre;
     }
